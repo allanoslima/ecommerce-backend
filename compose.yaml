@@ -1,0 +1,12 @@
+services:
+  database:
+    image: 'mysql:latest'
+    restart: unless-stopped
+    env_file: '.env'
+    environment:
+      MYSQL_DATABASE: '${MYSQL_DATABASE}'
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
+      MYSQL_ROOT_PASSWORD: 'admin'
+      MYSQL_USER: 'root'
+      MYSQL_ALLOW_EMPTY_PASSWORD: '${MYSQL_ALLOW_EMPTY_PASSWORD}'
+    ports: '${MYSQL_PORT}'
