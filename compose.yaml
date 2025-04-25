@@ -4,9 +4,14 @@ services:
     restart: unless-stopped
     env_file: '.env'
     environment:
-      MYSQL_DATABASE: '${MYSQL_DATABASE}'
-      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
-      MYSQL_ROOT_PASSWORD: 'admin'
-      MYSQL_USER: 'root'
-      MYSQL_ALLOW_EMPTY_PASSWORD: '${MYSQL_ALLOW_EMPTY_PASSWORD}'
-    ports: '${MYSQL_PORT}'
+      MYSQL_DATABASE: '${DB_NAME}'
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_USER: '${DB_USER}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+    ports:
+      - '${DB_PORT}:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
